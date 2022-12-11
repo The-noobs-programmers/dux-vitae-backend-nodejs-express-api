@@ -54,24 +54,18 @@ router.get("/admins/findAdminByRut/:rut", (req, res) => {
     .catch((error) => res.json({ message: error.message }));
 });
 
-// //Update an admin with id
-// router.put("/admins/:id", async (req, res) => {
-//   const { id } = req.params;
-//   const salt = await bcrypt.genSalt(10);
-//   const passwordEncrypted = await bcrypt.hash(req.body.password, salt);
-//   const admin = new adminSchema({
-//     rut: req.body.rut,
-//     name: req.body.name,
-//     lastName: req.body.lastName,
-//     email: req.body.email,
-//     password: passwordEncrypted,
-//   });
+//Update an admin with id
+router.put("/admins/:id", async (req, res) => {
+  const salt = await bcrypt.genSalt(10);
+  const password = await bcrypt.hash(req.body.password, salt);
+  const { id } = req.params;
+  const { rut, name, lastName, email } = req.body;
 
-//   await admin
-//     .updateOne({ _id: id }, { $set: { rut, name, lastName, email, password } })
-//     .then((data) => res.json(data))
-//     .catch((error) => res.json({ message: error }));
-// });
+  await adminSchema
+    .updateOne({ _id: id }, { $set: { rut, name, lastName, email, password } })
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }));
+});
 
 //Delete a client with id
 router.delete("/admins/:id", (req, res) => {

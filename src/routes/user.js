@@ -44,21 +44,22 @@ router.get("/users/:id", (req, res) => {
 });
 
 //Update an user with id
-router.put("/users/:id", (req, res) => {
+router.put("/users/:id", async (req, res) => {
+  const salt = await bcrypt.genSalt(10);
+  const password = await bcrypt.hash(req.body.password, salt);
   const { id } = req.params;
   const {
     rut,
     name,
     lastName,
     email,
-    password,
     role,
     birthday,
     gender,
     description,
     phone,
   } = req.body;
-  userSchema
+  await userSchema
     .updateOne(
       { _id: id },
       {
@@ -91,7 +92,7 @@ router.delete("/users/:id", (req, res) => {
 
 //******************************************************************************************************** */
 
-//CLIENT
+//CLIENT AND NUTRITIONIST
 
 //Create user with role CLIENT
 router.post("/users/addClient", async (req, res) => {
