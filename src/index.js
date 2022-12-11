@@ -6,6 +6,7 @@ require("dotenv").config();
 const clientRoutes = require("./routes/client");
 const adminRoutes = require("./routes/admin");
 const userRoutes = require("./routes/user");
+const loginRoutes = require("./routes/login");
 
 const app = express();
 const port = process.env.PORT || 9000;
@@ -14,6 +15,7 @@ mongoose.set("strictQuery", false);
 
 //Middlewares
 app.use(express.json()); //Para poder usar json
+app.use(express.urlencoded({ extended: false }));
 //Middleware para permitir direcciones http, header, métodos
 app.use((request, response, next) => {
   response.header("Access-Control-Allow-Origin", "*");
@@ -29,6 +31,7 @@ app.use((request, response, next) => {
 app.use("/api", clientRoutes);
 app.use("/api", adminRoutes);
 app.use("/api", userRoutes);
+app.use("/api", loginRoutes);
 
 //routes
 app.get("/", (req, res) => {

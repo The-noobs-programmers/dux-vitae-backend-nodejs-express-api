@@ -39,14 +39,14 @@ DELETE http://localhost:9000/api/users/639513dcefdbc449fb26f7f5  HTTP/1.1
 ### REQUEST DE USERS (CLIENTES)
 
 ###
-POST http://localhost:9000/api/users/clients HTTP/1.1
+POST http://localhost:9000/api/users/addClient HTTP/1.1
 Content-Type: application/json
 
 {
-    "rut": "18.758.777-6",
+    "rut": "20269568-9",
     "name": "Camilein",
     "lastName": "Pino",
-    "email": "camilosos@email.com",
+    "email": "carlos@email.com",
     "password": "123456",
     "birthday": "1994-11-08",
     "gender": "M",
@@ -54,8 +54,12 @@ Content-Type: application/json
     "phone": "123456789"
 }
 
+
 ### Request para buscar todos los clientes
-GET http://localhost:9000/api/users/clients HTTP/1.1
+GET http://localhost:9000/api/users/findUsersByRole/client HTTP/1.1
+
+### Request para buscar todos los clientes
+GET http://localhost:9000/api/users/findUsersByRut/20683938-4 HTTP/1.1
 
 // REQUEST DE CLIENT
 
@@ -113,10 +117,10 @@ POST http://localhost:9000/api/admins HTTP/1.1
 Content-Type: application/json
 
 {
-    "rut": "18.758.889-8",
-    "name": "Camilein",
+    "rut": "10562368-9",
+    "name": "Andres",
     "lastName": "Pino",
-    "email": "camilo@email.com",
+    "email": "Andres@email.com",
     "password": "123456"
 }
 
@@ -126,12 +130,15 @@ GET http://localhost:9000/api/admins HTTP/1.1
 ### Request para buscar un ADMIN por id
 GET http://localhost:9000/api/admins/6393d579e337d6956b1af3f3 HTTP/1.1
 
+### Request para buscar un ADMIN por id
+GET http://localhost:9000/api/admins/findAdminByRut/18.569.695-9 HTTP/1.1
+
 
 ### Request para eliminar un ADMIN por id
 DELETE http://localhost:9000/api/admins/6393d5322a480af15566439c HTTP/1.1
 
 ### Request para cambiar datos de ADMIN por id
-PUT http://localhost:9000/api/admins/6393d579e337d6956b1af3f3 HTTP/1.1
+PUT http://localhost:9000/api/admins/639657ce456623629db9a1f6 HTTP/1.1
 Content-Type: application/json
 
 {
@@ -139,5 +146,17 @@ Content-Type: application/json
     "name": "Kevin",
     "lastName": "Cruz",
     "email": "kevincruz@email.com",
+    "password": "12345657"
+}
+
+//****************************************************************************************************
+//REQUESTS PARA LOGIN
+
+### Login con email y password
+POST http://localhost:9000/api/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "carlos@email.com",
     "password": "123456"
 }

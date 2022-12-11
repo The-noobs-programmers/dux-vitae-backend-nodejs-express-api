@@ -1,12 +1,26 @@
 const express = require("express");
+const bcrypt = require("bcrypt");
 const userSchema = require("../models/user");
 
 const router = express.Router();
 
 //Create user
-router.post("/users", (req, res) => {
-  const user = userSchema(req.body);
-  user
+router.post("/users", async (req, res) => {
+  const salt = await bcrypt.genSalt(10);
+  const password = await bcrypt.hash(req.body.password, salt);
+  const user = new userSchema({
+    rut: req.body.rut,
+    name: req.body.name,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    password: password,
+    role: req.body.role,
+    birthday: req.body.birthday,
+    gender: req.body.gender,
+    description: req.body.description,
+    phone: req.body.phone,
+  });
+  await user
     .save()
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
@@ -80,30 +94,63 @@ router.delete("/users/:id", (req, res) => {
 //CLIENT
 
 //Create user with role CLIENT
-router.post("/users/clients", (req, res) => {
+router.post("/users/addClient", async (req, res) => {
+  const salt = await bcrypt.genSalt(10);
+  const password = await bcrypt.hash(req.body.password, salt);
   const user = new userSchema({
     rut: req.body.rut,
     name: req.body.name,
     lastName: req.body.lastName,
     email: req.body.email,
-    password: req.body.password,
+    password: password,
     role: "client",
     birthday: req.body.birthday,
     gender: req.body.gender,
     description: req.body.description,
     phone: req.body.phone,
   });
-  user
+  await user
     .save()
     .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }));
+    .catch((error) => res.json({ message: error.message }));
 });
 
-//Get all CLIENTS
-router.get("/users?client", (req, res) => {
-  var client = req.param('client');
+//Creat user with role nutritionist
+router.post("/users/addNutritionist", async (req, res) => {
+  const salt = await bcrypt.genSalt(10);
+  const password = await bcrypt.hash(req.body.password, salt);
+  const user = new userSchema({
+    rut: req.body.rut,
+    name: req.body.name,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    password: password,
+    role: "nutritionist",
+    birthday: req.body.birthday,
+    gender: req.body.gender,
+    description: req.body.description,
+    phone: req.body.phone,
+  });
+  await user
+    .save()
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error.message }));
+});
+
+//Get all users by role
+router.get("/users/findUsersByRole/:role", (req, res) => {
+  const { role } = req.params;
   userSchema
-    .find({ role: "client" })
+    .find({ role: role })
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error.message }));
+});
+
+//Get all users by rut
+router.get("/users/findUsersByRut/:rut", (req, res) => {
+  const { rut } = req.params;
+  userSchema
+    .find({ rut: rut })
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error.message }));
 });
