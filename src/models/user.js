@@ -5,6 +5,8 @@ const userSchema = mongoose.Schema(
     rut: {
       type: String,
       required: true,
+      unique: true,
+      dropDups: true,
     },
     name: {
       type: String,
@@ -14,6 +16,9 @@ const userSchema = mongoose.Schema(
     },
     email: {
       type: String,
+      required: true,
+      unique: true,
+      dropDups: true,
     },
     password: {
       type: String,
