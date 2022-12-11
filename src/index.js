@@ -14,10 +14,6 @@ mongoose.set("strictQuery", false);
 
 //Middlewares
 app.use(express.json()); //Para poder usar json
-app.use("/api", clientRoutes);
-app.use("/api", adminRoutes);
-app.use("/api", userRoutes);
-
 //Middleware para permitir direcciones http, header, métodos
 app.use((request, response, next) => {
   response.header("Access-Control-Allow-Origin", "*");
@@ -30,6 +26,9 @@ app.use((request, response, next) => {
   );
   next();
 });
+app.use("/api", clientRoutes);
+app.use("/api", adminRoutes);
+app.use("/api", userRoutes);
 
 //routes
 app.get("/", (req, res) => {

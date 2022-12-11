@@ -100,11 +100,12 @@ router.post("/users/clients", (req, res) => {
 });
 
 //Get all CLIENTS
-// router.get("/users/clients", (req, res) => {
-//   userSchema
-//     .find({ role: "client" })
-//     .then((data) => res.json(data))
-//     .catch((error) => res.json({ message: error.message }));
-// });
+router.get("/users?client", (req, res) => {
+  var client = req.param('client');
+  userSchema
+    .find({ role: "client" })
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error.message }));
+});
 
 module.exports = router;
