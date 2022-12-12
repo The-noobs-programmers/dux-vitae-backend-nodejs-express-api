@@ -180,13 +180,44 @@ router.put("/users/updateByRut/:rut", async (req, res) => {
     .catch((error) => res.json({ message: error }));
 });
 
-//Delete an user with id
+//Delete an user with rut
 router.delete("/users/deleteByRut/:rut", (req, res) => {
-  const { rut } = req.params;
-  userSchema
-    .deleteOne({ rut: rut })
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }));
+  try {
+    const { rut } = req.params;
+    userSchema
+      .deleteOne({ rut: rut })
+      .then((data) => res.json(data))
+      .catch((error) => res.json({ message: error }));
+  } catch (error) {
+    res.status(400);
+  }
+});
+
+//Update an user client with rut
+router.put("/users/updateClientByRut/:rut", async (req, res) => {
+  try {
+    const { rut } = req.params;
+    const salt = await bcrypt.genSalt(10);
+    const password = await bcrypt.hash(req.body.password, salt);
+    const { name, lastName, email } = req.body;
+
+    await userSchema
+      .updateOne(
+        { rut: rut },
+        {
+          $set: {
+            name,
+            lastName,
+            email,
+            password,
+          },
+        }
+      )
+      .then((data) => res.json(data))
+      .catch((error) => res.json({ message: error }));
+  } catch (error) {
+    res.status(400);
+  }
 });
 
 module.exports = router;
