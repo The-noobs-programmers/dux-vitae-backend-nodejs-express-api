@@ -13,6 +13,7 @@ const appointmentSchema = mongoose.Schema(
     },
     state: {
       type: Boolean,
+      default: false,
     },
     client: {
       rut: {
