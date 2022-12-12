@@ -23,7 +23,7 @@ router.post("/users", async (req, res) => {
   await user
     .save()
     .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }));
+    .catch((error) => res.status(400).json({ message: error }));
 });
 
 //Get all users
