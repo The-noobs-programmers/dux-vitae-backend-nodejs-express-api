@@ -6,6 +6,7 @@ require("dotenv").config();
 const adminRoutes = require("./routes/admin");
 const userRoutes = require("./routes/user");
 const loginRoutes = require("./routes/login");
+const appointmentRoutes = require("./routes/appointment");
 
 const app = express();
 const port = process.env.PORT || 9000;
@@ -30,6 +31,7 @@ app.use((request, response, next) => {
 app.use("/api", adminRoutes);
 app.use("/api", userRoutes);
 app.use("/api", loginRoutes);
+app.use("/api", appointmentRoutes);
 
 //routes
 app.get("/", (req, res) => {
