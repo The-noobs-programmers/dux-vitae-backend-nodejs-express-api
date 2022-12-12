@@ -156,4 +156,28 @@ router.get("/users/findUsersByRut/:rut", (req, res) => {
     .catch((error) => res.json({ message: error.message }));
 });
 
+//Update an user with id
+router.put("/users/updateByRut/:rut", async (req, res) => {
+  const { rut } = req.params;
+  const { name, lastName, role, birthday, gender, description, phone } =
+    req.body;
+  await userSchema
+    .updateOne(
+      { rut: rut },
+      {
+        $set: {
+          name,
+          lastName,
+          role,
+          birthday,
+          gender,
+          description,
+          phone,
+        },
+      }
+    )
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }));
+});
+
 module.exports = router;
