@@ -23,7 +23,9 @@ router.post("/users", async (req, res) => {
   await user
     .save()
     .then((data) => res.json(data))
-    .catch((error) => res.status(400).json({ message: error.message }));
+    .catch((error) =>
+      res.status(400).json({ message: "Rut o email no validos" })
+    );
 });
 
 //Get all users
