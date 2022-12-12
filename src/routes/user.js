@@ -180,4 +180,13 @@ router.put("/users/updateByRut/:rut", async (req, res) => {
     .catch((error) => res.json({ message: error }));
 });
 
+//Delete an user with id
+router.delete("/users/deleteByRut/:rut", (req, res) => {
+  const { rut } = req.params;
+  userSchema
+    .deleteOne({ rut: rut })
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }));
+});
+
 module.exports = router;

@@ -127,7 +127,7 @@ Content-Type: application/json
     "password": "Admin001_"
 }
 
-### Request para cambiar datos de usuarios por id
+### Request para cambiar datos de usuarios por rut
 PUT http://localhost:9000/api/users/updateByRut/20269568-9 HTTP/1.1
 Content-Type: application/json
 
@@ -140,3 +140,6 @@ Content-Type: application/json
     "description": "Hola",
     "phone": "123456789"
 }
+
+### Request para eliminar un usuario por rut
+DELETE http://localhost:9000/api/users/deleteByRut/20269568-9 HTTP/1.1
