@@ -24,7 +24,7 @@ router.post("/users", async (req, res) => {
     .save()
     .then((data) => res.json(data))
     .catch((error) =>
-      res.status(400).json({ message: "Rut o email no validos" })
+      res.status(400).json({ message: "Rut o email no válido" })
     );
 });
 
