@@ -75,7 +75,7 @@ router.delete("/appointments/:id", (req, res) => {
     .catch((error) => res.json({ message: error }));
 });
 
-//Get an user by nutritionistRUT
+//Get an appointment by nutritionistRUT
 router.get(
   "/appointments/findByNutritionistRut/:nutritionistRut",
   (req, res) => {
@@ -86,5 +86,22 @@ router.get(
       .catch((error) => res.json({ message: error }));
   }
 );
+
+//Change state of an appointment
+router.put("/appointments/updateAppointmentState/:id", async (req, res) => {
+  const { id } = req.params;
+  const { state } = req.body;
+  await appointmentSchema
+    .updateOne(
+      { _id: id },
+      {
+        $set: {
+          state,
+        },
+      }
+    )
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }));
+});
 
 module.exports = router;
