@@ -23,6 +23,7 @@ router.get("/dashboard/users/getByMonths", (req, res) => {
           totalUsers: 1,
         },
       },
+      { $sort: { month: 1 } },
     ])
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error.message }));
@@ -52,6 +53,7 @@ router.get("/dashboard/users/getByMonthAndYear", (req, res) => {
           totalUsers: 1,
         },
       },
+      { $sort: { monthAndYear: 1 } },
     ])
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error.message }));
@@ -252,6 +254,7 @@ router.get("/dashboard/appointment/getByMonths", (req, res) => {
           totalAppointments: 1,
         },
       },
+      { $sort: { month: 1 } },
     ])
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error.message }));
@@ -281,6 +284,7 @@ router.get("/dashboard/appointment/getByMonthAndYear", (req, res) => {
           totalAppointments: 1,
         },
       },
+      { $sort: { monthAndYear: 1 } },
     ])
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error.message }));

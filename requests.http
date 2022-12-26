@@ -20,16 +20,16 @@ POST http://localhost:9000/api/users HTTP/1.1
 Content-Type: application/json
 
 {
-    "rut": "8503548-7",
-    "name": "Ana",
-    "lastName": "Perez",
-    "email": "anaperez@email.com",
+    "rut": "22200921-9",
+    "name": "Mariana",
+    "lastName": "Valenzuela",
+    "email": "marianavalenzuela@email.com",
     "password": "Admin001_",
     "role": "client",
-    "birthday": "1970-12-16",
-    "gender": "F",
+    "birthday": "2002-03-16",
+    "gender": "M",
     "description": "Hola",
-    "phone": "+56994685323"
+    "phone": "+56967635813"
 }
 
 ### Request para buscar todos los usuarios
