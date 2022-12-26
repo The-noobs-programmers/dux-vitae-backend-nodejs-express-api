@@ -20,16 +20,16 @@ POST http://localhost:9000/api/users HTTP/1.1
 Content-Type: application/json
 
 {
-    "rut": "16151709-7",
-    "name": "Alberto",
-    "lastName": "Martinez",
-    "email": "alberto@email.com",
+    "rut": "8503548-7",
+    "name": "Ana",
+    "lastName": "Perez",
+    "email": "anaperez@email.com",
     "password": "Admin001_",
     "role": "client",
-    "birthday": "1993-10-08",
-    "gender": "M",
+    "birthday": "1970-12-16",
+    "gender": "F",
     "description": "Hola",
-    "phone": "+56994685326"
+    "phone": "+56994685323"
 }
 
 ### Request para buscar todos los usuarios
@@ -254,4 +254,4 @@ GET http://localhost:9000/api/dashboard/appointment/getByMonthAndYear HTTP/1.1
 GET http://localhost:9000/api/dashboard/users/getClientsVsNutritionist HTTP/1.1
 
 ### Request para buscar los todos los usuarios creados por mes y año
-GET http://localhost:9000/api/dashboard/users/getByMonthAndYearssss HTTP/1.1
+# GET http://localhost:9000/api/dashboard/users/getByMonthAndYearssss HTTP/1.1
