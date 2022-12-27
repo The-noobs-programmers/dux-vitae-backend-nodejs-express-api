@@ -87,6 +87,15 @@ router.get(
   }
 );
 
+//Get an appointment by clientRUT
+router.get("/appointments/findByClientRut/:clientRut", (req, res) => {
+  const { clientRut } = req.params;
+  appointmentSchema
+    .find({ "client.rut": clientRut })
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }));
+});
+
 //Change state of an appointment
 router.put("/appointments/updateAppointmentState/:id", async (req, res) => {
   const { id } = req.params;

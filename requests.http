@@ -98,10 +98,10 @@ Content-Type: application/json
 GET http://localhost:9000/api/admins HTTP/1.1
 
 ### Request para buscar un ADMIN por id
-GET http://localhost:9000/api/admins/6393d579e337d6956b1af3f3 HTTP/1.1
+GET http://localhost:9000/api/admins/63966ef558e17e5a5ec6de6a HTTP/1.1
 
 ### Request para buscar un ADMIN por id
-GET http://localhost:9000/api/admins/findAdminByRut/18.569.695-9 HTTP/1.1
+GET http://localhost:9000/api/admins/findAdminByRut/17568369-9 HTTP/1.1
 
 
 ### Request para eliminar un ADMIN por id
@@ -233,6 +233,9 @@ DELETE http://localhost:9000/api/appointments/63978be3eef44336d01ce08e HTTP/1.1
 ### Request para buscar APPOINTMENT por id
 GET http://localhost:9000/api/appointments/findByNutritionistRut/16855099-8 HTTP/1.1
 
+###
+GET http://localhost:9000/api/appointments/findByClientRut/20953669-2
+
 
 
 ####################################################################################################
@@ -255,3 +258,4 @@ GET http://localhost:9000/api/dashboard/users/getClientsVsNutritionist HTTP/1.1
 
 ### Request para buscar los todos los usuarios creados por mes y año
 # GET http://localhost:9000/api/dashboard/users/getByMonthAndYearssss HTTP/1.1
+
